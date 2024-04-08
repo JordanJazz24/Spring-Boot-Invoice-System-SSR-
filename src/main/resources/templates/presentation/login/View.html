@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Login</title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
 </head>
 <body>
 <header>
@@ -15,10 +15,10 @@
 <div class="content_form">
 
     <form class="form_login"  th:action="@{/presentation/login/view}"  th:object="${Usuario}" method="post">
-        <input class="" type="text" th:field="*{id}" name="id"  placeholder="Identificación" required="required"/>
+        <input class="" type="text" th:field="*{identificacion}" name="identificacion"  placeholder="Identificación" required="required"/>
         <input class="" type="password"   name="pass" placeholder="Contraseña" required="required"/>
         <button class="" type="submit">Iniciar sesión</button>
-        <p>No tiene cuenta? <a th:href="@{/registro}">Registrese aquí</a></p>
+        <p>No tiene cuenta? <a th:href="@{/}">Registrese aquí</a></p>
 
     </form>
 </div>

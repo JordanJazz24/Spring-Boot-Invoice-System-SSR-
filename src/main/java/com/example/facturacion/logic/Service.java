@@ -11,4 +11,8 @@ public class Service {
     public Iterable<Usuario> getUsuarios() {
         return usuarioRepository.findAll();
     }
+
+    public Usuario usuarioRead(String identificacion) {
+        return usuarioRepository.findById(identificacion);
+    }
 }
