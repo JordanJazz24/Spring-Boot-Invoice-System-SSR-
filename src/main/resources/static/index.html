@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Seguros Miedo</title>
+    <title>Login</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<p><a href="/presentation/clientes/show">Ver Clientes</a> </p>
+<header>
+    <h1>Titulo</h1>
+</header>
+
+<div class="content_form">
+
+    <form class="form_login"  th:action="@{/presentation/login/view}"  th:object="${Usuario}" method="post">
+        <input class="" type="text" th:field="*{id}" name="id"  placeholder="Identificación" required="required"/>
+        <input class="" type="password"   name="pass" placeholder="Contraseña" required="required"/>
+        <button class="" type="submit">Iniciar sesión</button>
+        <p>No tiene cuenta? <a th:href="@{/registro}">Registrese aquí</a></p>
+
+    </form>
+</div>
+
+<footer><p>Progra 4 Copyright ®2024</p></footer>
+
 </body>
 </html>

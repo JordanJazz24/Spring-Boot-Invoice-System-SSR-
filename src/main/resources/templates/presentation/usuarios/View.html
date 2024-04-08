@@ -13,10 +13,9 @@
 <div class="centered">
     <table style="border:1px solid blue">
         <tr> <th>Id</th> <th>Nombre</th> <th>...</th> </tr>
-        <tr th:each="c: ${clientes}">
-            <td th:text="${c.getIdentificacion()}" />
-            <td th:text="${c.getNombre()}" />
-            <td><a th:href="@{presentation/polizas/show(identificacion=${c.getIdentificacion()})}">...</a></td>
+        <tr th:each="c: ${usuarios}">
+            <td th:text="${c.getRol()}"></td>
+            <td th:text="${c.getRol()}"></td>
         </tr>
     </table>
 </div>
