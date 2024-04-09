@@ -1,5 +1,6 @@
 package com.example.facturacion.presentation.login;
 
+import com.example.facturacion.logic.Proveedor;
 import com.example.facturacion.logic.Service;
 import com.example.facturacion.logic.Usuario;
 import jakarta.servlet.http.HttpSession;
@@ -15,15 +16,22 @@ public class Controller {
     private Service service;
 
 
-    @PostMapping("/presentation/login/View")
-    public String logIn(@ModelAttribute("Usuario")Usuario usuario, HttpSession httpSession) {
+    @PostMapping("/presentation/login/login")
+    public String logIn(@ModelAttribute("Usuario") Usuario usuario, HttpSession httpSession) {
 
         try {
             Usuario usuarioDB = service.usuarioRead(usuario.getIdentificacion());
+            Proveedor proveedor = service.proveedorRead(usuario.getIdentificacion());
+            if(proveedor != null ){
+                if (proveedor.getEstado().equals("inactivo")){
+                    return "redirect:/";//proveedor inactivo redirige a la pagina principal
+                }
+            }
+            //
             httpSession.setAttribute("usuario", usuarioDB);
-            httpSession.setAttribute("proveedor", service.proveedorRead(usuarioDB.getIdentificacion()));
-                return switch (usuarioDB.getRol()) {
-                case "admin" -> "redirect:/presentation/admin/View";
+            httpSession.setAttribute("proveedor", proveedor);
+            return switch (usuarioDB.getRol()) {
+                case "admin" -> "redirect:/presentation/proveedores/show";
                 case "proveedor" -> "redirect:/presentation/proveedor/View";
                 default -> "/";
             };

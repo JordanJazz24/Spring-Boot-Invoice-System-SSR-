@@ -16,15 +16,9 @@ public class Proveedor {
     private String nombre;
     @Basic
     @Column(name = "estado")
-    private Object estado;
-    @OneToMany(mappedBy = "proveedorByIdProveedor")
-    private Collection<Cliente> clientesById;
-    @OneToMany(mappedBy = "proveedorByIdProveedor")
-    private Collection<Factura> facturasById;
-    @OneToMany(mappedBy = "proveedorByIdProveedor")
-    private Collection<Producto> productosById;
-    @OneToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private String estado;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 
     public int getId() {
@@ -43,11 +37,11 @@ public class Proveedor {
         this.nombre = nombre;
     }
 
-    public Object getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Object estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -64,35 +58,12 @@ public class Proveedor {
         return Objects.hash(id, nombre, estado);
     }
 
-    public Collection<Cliente> getClientesById() {
-        return clientesById;
-    }
-
-    public void setClientesById(Collection<Cliente> clientesById) {
-        this.clientesById = clientesById;
-    }
-
-    public Collection<Factura> getFacturasById() {
-        return facturasById;
-    }
-
-    public void setFacturasById(Collection<Factura> facturasById) {
-        this.facturasById = facturasById;
-    }
-
-    public Collection<Producto> getProductosById() {
-        return productosById;
-    }
-
-    public void setProductosById(Collection<Producto> productosById) {
-        this.productosById = productosById;
-    }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuarioByIdUsuario) {
-        this.usuario = usuarioByIdUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

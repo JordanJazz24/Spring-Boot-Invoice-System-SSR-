@@ -45,7 +45,7 @@ public class Usuario {
     }
 
     public String getRol() {
-        return (String) rol;
+        return rol;
     }
 
     public void setRol(String rol) {

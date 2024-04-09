@@ -1,13 +1,14 @@
 package com.example.facturacion.data;
 
 import com.example.facturacion.logic.Proveedor;
+import com.example.facturacion.logic.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface ProveedorRepository extends CrudRepository<Proveedor, String>{
+public interface ProveedorRepository extends CrudRepository<Proveedor, Integer>{
 
-    Proveedor findByUsuario_Identificacion(String identificacion);
+
+
+    Proveedor findByusuario(Usuario id);
 }

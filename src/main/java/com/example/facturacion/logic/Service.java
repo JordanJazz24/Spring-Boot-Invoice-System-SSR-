@@ -20,16 +20,16 @@ public class Service {
     }
 
     public Proveedor proveedorRead(String identificacion) {
-        // Busca el usuario con la identificación dada
         Usuario usuario = usuarioRepository.findByidentificacion(identificacion);
-
-        // Si se encuentra el usuario, busca el proveedor asociado a ese usuario
         if (usuario != null) {
-            return proveedorRepository.findByUsuario_Identificacion(identificacion);
-        }
+        Proveedor    proveedor= proveedorRepository.findByusuario(usuario);
+            return proveedor;
+            }
 
-        // Si no se encuentra el usuario, devuelve null o lanza una excepción, según tu lógica de negocio
-        return null; // o lanza una excepción
+        return new Proveedor( );
     }
 
+    public Iterable<Proveedor> getProveedores() {
+        return proveedorRepository.findAll();
+    }
 }

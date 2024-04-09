@@ -1,8 +1,8 @@
    ul.Menu {
-		font-size: 0px; /* Sin espacio entre opciones */
+		font-size: 10px; /* Sin espacio entre opciones */
    }
 	ul.Menu li{ /* Establece tamaño letra */
-		font-size:  x-large;
+		font-size:  large;
 	}
 
 	/*Estilo de las listas del menu y submenues*/
@@ -20,6 +20,7 @@
 	ul.Menu li{
 		display: inline-block;
 		vertical-align:top;
+		margin-right: 15px;
 	}
 
 	/*MENU NORMAL*/
