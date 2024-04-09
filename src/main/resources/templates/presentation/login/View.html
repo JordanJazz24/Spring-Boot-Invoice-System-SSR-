@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Factura</title>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="icon" href="/images/favicon.ico">
 </head>
 <body>
-<header>
-    <h1>Titulo</h1>
-</header>
+<header th:replace="~{fragments/header :: header} "></header>
 
-<div class="content_form">
 
-    <form class="form_login"  th:action="@{/presentation/login/view}"  th:object="${Usuario}" method="post">
-        <input class="" type="text" th:field="*{identificacion}" name="identificacion"  placeholder="Identificación" required="required"/>
-        <input class="" type="password"   name="pass" placeholder="Contraseña" required="required"/>
-        <button class="" type="submit">Iniciar sesión</button>
-        <p>No tiene cuenta? <a th:href="@{/}">Registrese aquí</a></p>
 
-    </form>
-</div>
 
-<footer><p>Progra 4 Copyright ®2024</p></footer>
+<header th:replace="~{fragments/header :: footer} "></header>
 
 </body>
 </html>

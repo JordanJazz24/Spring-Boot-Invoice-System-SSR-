@@ -18,7 +18,7 @@ public class Usuario {
     private String contrasena;
     @Basic
     @Column(name = "rol")
-    private Object rol;
+    private String rol;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public Object getRol() {
-        return rol;
+    public String getRol() {
+        return (String) rol;
     }
 
-    public void setRol(Object rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 

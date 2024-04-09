@@ -22,9 +22,13 @@ public class Controller {
             Usuario usuarioDB = service.usuarioRead(usuario.getIdentificacion());
             httpSession.setAttribute("usuario", usuarioDB);
             httpSession.setAttribute("proveedor", service.proveedorRead(usuarioDB.getIdentificacion()));
-            return "redirect:/presentation/nuevo/show";
+                return switch (usuarioDB.getRol()) {
+                case "admin" -> "redirect:/presentation/admin/View";
+                case "proveedor" -> "redirect:/presentation/proveedor/View";
+                default -> "/";
+            };
         } catch (Exception e) {
-            return "/presentation/login/view";
+            return "/";
         }
     }
 

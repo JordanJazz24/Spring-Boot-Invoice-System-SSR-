@@ -23,9 +23,9 @@ public class Proveedor {
     private Collection<Factura> facturasById;
     @OneToMany(mappedBy = "proveedorByIdProveedor")
     private Collection<Producto> productosById;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    private Usuario usuarioByIdUsuario;
+    private Usuario usuario;
 
     public int getId() {
         return id;
@@ -88,11 +88,11 @@ public class Proveedor {
         this.productosById = productosById;
     }
 
-    public Usuario getUsuarioByIdUsuario() {
-        return usuarioByIdUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioByIdUsuario(Usuario usuarioByIdUsuario) {
-        this.usuarioByIdUsuario = usuarioByIdUsuario;
+    public void setUsuario(Usuario usuarioByIdUsuario) {
+        this.usuario = usuarioByIdUsuario;
     }
 }
