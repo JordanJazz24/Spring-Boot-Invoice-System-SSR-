@@ -6,13 +6,12 @@
     <div>
         <ul class="Menu">
             <li><a href="/presentation/acercade/show"> Acerca de...</a></li>
-            <li><a href="/presentation/acercade/show"> Proveedores</a></li>
-            <th:block th:if="${session.usuario!=null}">
-                <th:block th:if="${session.usuario.getRol().equals('PRO')}">
+            <th:block th:if="${session.usuario!=null}">        <!--Si el usuario esta logueado-->
+                <th:block th:if="${session.usuario.getRol().equals('admin')}"><!--Si el usuario es admin-->
                     <li>
-                        <a href="/presentation/proveedor/show">Proveedores</a>
+                        <a href="/presentation/proveedores/show">Proveedores</a>
                     </li>
-                    <li><a href="/presentation/login/show">Login</a></li>
+                    <li><a href="/presentation/login/Logout">Logout</a></li>
                 </th:block>
             </th:block>
             <th:block th:unless="${session.usuario!=null}">

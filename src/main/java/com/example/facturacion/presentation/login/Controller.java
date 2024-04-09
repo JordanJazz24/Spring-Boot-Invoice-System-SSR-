@@ -21,7 +21,7 @@ public class Controller {
 
         try {
             Usuario usuarioDB = service.usuarioRead(usuario.getIdentificacion());
-            Proveedor proveedor = service.proveedorRead(usuario.getIdentificacion());
+                Proveedor proveedor = service.proveedorRead(usuario.getIdentificacion());
             if(proveedor != null ){
                 if (proveedor.getEstado().equals("inactivo")){
                     return "redirect:/";//proveedor inactivo redirige a la pagina principal

@@ -28,8 +28,15 @@ public class Service {
 
         return new Proveedor( );
     }
+    public Proveedor proveedorReadID(int id) {
+        return proveedorRepository.findById(id).get();
+    }
 
     public Iterable<Proveedor> getProveedores() {
         return proveedorRepository.findAll();
+    }
+
+    public void proveedorUpdate(Proveedor proveedorDB) {
+        proveedorRepository.save(proveedorDB);
     }
 }

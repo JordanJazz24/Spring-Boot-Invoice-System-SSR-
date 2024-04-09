@@ -29,7 +29,7 @@
                 <td th:text="${p.getId()}"></td>
                 <td th:text="${p.getNombre()}"></td>
                 <td>
-                    <a th:href="@{/presentation/eliminarCurso(Codigo=${p.getEstado()})}">
+                    <a th:href="@{/presentation/proveedores/activar(id=${p.getId()})}">
                         <SPAN th:text="${p.getEstado()}"></SPAN>
                     </a>
                 </td>
