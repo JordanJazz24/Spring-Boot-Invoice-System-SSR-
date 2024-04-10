@@ -1,10 +1,9 @@
 package com.example.facturacion.logic;
 
-import com.example.facturacion.data.ClientesRepository;
-import com.example.facturacion.data.ProductosRepository;
-import com.example.facturacion.data.ProveedorRepository;
-import com.example.facturacion.data.UsuarioRepository;
+import com.example.facturacion.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @org.springframework.stereotype.Service("Service")
 public class Service {
@@ -16,6 +15,10 @@ public class Service {
     private ClientesRepository clientesRepository;
     @Autowired
     private ProductosRepository productosRepository;
+    @Autowired
+    private FacturaRepository facturaRepository;
+    @Autowired
+    private DetalleRepository detalleRepository;
 
     public Iterable<Usuario> getUsuarios() {
         return usuarioRepository.findAll();
@@ -97,4 +100,15 @@ public class Service {
     public void createUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
+
+    public Iterable<Factura> getFacturas(int id) {
+        Iterable<Factura> facturas = facturaRepository.findByproveedorByIdProveedor(id);
+        return facturas;
+    }
+
+    public Iterable<Detalle> getDetalles() {
+        Iterable<Detalle> detalles = detalleRepository.findAll();
+        return detalles;
+    }
+
 }

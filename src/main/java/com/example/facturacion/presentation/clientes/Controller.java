@@ -47,9 +47,7 @@ public class Controller {
 
     @PostMapping("/presentation/clientes/consultar")
     public String consultarCliente(@ModelAttribute("clienteEdit") Cliente cliente,
-                                   HttpSession session,
                                    Model model) {
-        Proveedor proveedor = (Proveedor) session.getAttribute("proveedor");
         if (cliente.getIdentificacion().isEmpty()) {
             return "redirect:/presentation/clientes/show";
         }

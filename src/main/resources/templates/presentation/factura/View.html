@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factura</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="icon" href="/images/favicon.ico">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header} "></header>
+
+<div class="container">
+    <div class="courses-list">
+        <h2>Facturas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Proveedor</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>...</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterating over each factura -->
+            <tr th:each="factura : ${facturasList}">
+                <td th:text="${factura.getId()}"></td>
+                <td th:text="${factura.getProveedorByIdProveedor().getNombre()}"></td>
+                <td th:text="${factura.getClienteByIdCliente().getNombre()}"></td>
+
+                <!-- Iterating over each detalle of the factura -->
+                <td>
+                    <table>
+                        <tbody>
+                        <tr th:each="detalle : ${detalleList}">
+                            <!-- Check if the detalle belongs to the current factura -->
+                            <td th:if="${detalle.getFacturaByIdFactura().getId() == factura.getId()}"
+                                th:text="${detalle.getProductoByIdProducto().getNombre()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tbody>
+                        <tr th:each="detalle : ${detalleList}">
+                            <!-- Check if the detalle belongs to the current factura -->
+                            <td th:if="${detalle.getFacturaByIdFactura().getId() == factura.getId()}"
+                                th:text="${detalle.getProductoByIdProducto().getDescripcion()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+                <td>
+                    <table>
+                        <tbody>
+                        <tr th:each="detalle : ${detalleList}">
+                            <!-- Check if the detalle belongs to the current factura -->
+                            <td th:if="${detalle.getFacturaByIdFactura().getId() == factura.getId()}"
+                                th:text="${detalle.getCantidad()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+                <td>
+                    <table>
+                        <tbody>
+                        <tr th:each="detalle : ${detalleList}">
+                            <!-- Check if the detalle belongs to the current factura -->
+                            <td th:if="${detalle.getFacturaByIdFactura().getId() == factura.getId()}"
+                                th:text="${detalle.getMontoTotal()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<header th:replace="~{fragments/header :: footer} "></header>
+
+</body>
+</html>
