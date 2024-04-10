@@ -21,6 +21,10 @@ public class Proveedor {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 
+    public Proveedor() {
+        estado = "inactivo";
+    }
+
     public int getId() {
         return id;
     }

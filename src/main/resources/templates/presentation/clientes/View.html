@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factura</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+
+    <link rel="icon" href="/images/favicon.ico">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header} "></header>
+
+<div class="container">
+    <div class="courses-list">
+        <h2>Clientes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Identificacion</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>...</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <form method="POST" th:action="@{/presentation/clientes/consultar}">
+                    <input type="text" name="identificacion">
+                    <input type="submit" value="Buscar">
+                </form>            </tr>
+            <tr th:each="c : ${clientesList}">
+                <td th:text="${c.getIdentificacion()}"></td>
+                <td th:text="${c.getNombre()}"></td>
+                <td th:text="${c.getCorreo()}"></td>
+                <td th:text="${c.getTelefono()}"></td>
+                <td> <a th:href="@{/presentation/clientes/edit/(identificacion=${c.getIdentificacion()})}">Editar</a> </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="container">
+    <form th:action="@{/presentation/clientes/create}" method="post" th:object="${clienteEdit}">
+        <h2>Editart</h2>
+        <input class="" type="hidden" th:field="*{id}" name="id" placeholder="id" /><br>
+        <input class="" type="text" th:field="*{identificacion}" name="identificacion" placeholder="Identificación" required="required"/><br>
+        <input class="" type="text" th:field="*{nombre}" name="nombre" placeholder="Nombre" required="required"/><br>
+        <input class="" type="text" th:field="*{correo}" name="correo" placeholder="Correo electrónico" required="required"/><br>
+        <input class="" type="text" th:field="*{telefono}" name="telefono" placeholder="Teléfono" required="required"/><br>
+        <button class="" type="submit">Crear</button>
+    </form>
+</div>
+
+
+
+<header th:replace="~{fragments/header :: footer} "></header>
+
+</body>
+</html>

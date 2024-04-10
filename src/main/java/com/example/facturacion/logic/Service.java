@@ -1,5 +1,7 @@
 package com.example.facturacion.logic;
 
+import com.example.facturacion.data.ClientesRepository;
+import com.example.facturacion.data.ProductosRepository;
 import com.example.facturacion.data.ProveedorRepository;
 import com.example.facturacion.data.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,10 @@ public class Service {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private ProveedorRepository proveedorRepository;
+    @Autowired
+    private ClientesRepository clientesRepository;
+    @Autowired
+    private ProductosRepository productosRepository;
 
     public Iterable<Usuario> getUsuarios() {
         return usuarioRepository.findAll();
@@ -38,5 +44,57 @@ public class Service {
 
     public void proveedorUpdate(Proveedor proveedorDB) {
         proveedorRepository.save(proveedorDB);
+    }
+   public void clienteUpdate(Cliente cliente) {
+        clientesRepository.save(cliente);
+    }
+
+    public Iterable<Cliente> getClientes(int id) {
+       Iterable<Cliente> clientes = clientesRepository.findByproveedorByIdProveedor(id);
+        return clientes;
+    }
+
+    public void createCliente(Cliente cliente) {
+        clientesRepository.save(cliente);
+    }
+
+    public Cliente clienteRead(String identificacion) {
+        Cliente cliente = clientesRepository.findByidentificacion(identificacion);
+        return cliente;
+    }
+
+    public Cliente clienteReadById(int id) {
+        Cliente cliente = clientesRepository.findByid(id);
+        return cliente;
+    }
+
+    public Iterable<Producto> getProductos(int id) {
+        Iterable<Producto> productos = productosRepository.findByproveedorByIdProveedor(id);
+        return productos;
+    }
+
+    public Producto productoReadById(int id) {
+        return productosRepository.findByid(id);
+    }
+
+    public void productoUpdate(Producto productoDB) {
+        productosRepository.save(productoDB);
+    }
+
+    public void createProducto(Producto producto) {
+        productosRepository.save(producto);
+    }
+
+    public Producto productoRead(String codigo) {
+        Producto producto = productosRepository.findBycodigo(codigo);
+        return producto;
+    }
+
+    public void createProveedor(Proveedor proveedor) {
+        proveedorRepository.save(proveedor);
+    }
+
+    public void createUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
 }

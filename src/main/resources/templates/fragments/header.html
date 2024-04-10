@@ -11,16 +11,43 @@
                     <li>
                         <a href="/presentation/proveedores/show">Proveedores</a>
                     </li>
-                    <li><a href="/presentation/login/Logout">Logout</a></li>
+                    <li><a href="#" th:text="${session.usuario.getIdentificacion()}"></a>
+                        <ul>
+                            <li><a href="">Perfil</a></li>
+                            <li><a href="/presentation/login/Logout">Logout</a></li>
+                        </ul>
+                    </li>
                 </th:block>
+
+                <th:block th:if="${session.usuario.getRol().equals('proveedor')}"><!--Si el usuario es proveedor-->
+                    <li>
+                        <a href="/presentation/facturar/show">Facturar</a>
+                    </li>
+                    <li>
+                        <a href="/presentation/clientes/show">Clientes</a>
+                    </li>
+                    <li>
+                        <a href="/presentation/productos/show">Productos</a>
+                    </li>
+                       <li>
+                        <a href="/presentation/facturas/show">Facturas</a>
+                    </li>
+                    <li><a href="#" th:text="${session.usuario.getIdentificacion()}"></a>
+                        <ul>
+                            <li><a href="">Perfil</a></li>
+                            <li><a href="/presentation/login/Logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </th:block>
+
             </th:block>
             <th:block th:unless="${session.usuario!=null}">
-                <li><a href="/presentation/login/show">Login</a></li>
+                <li><a href="/">Login</a></li>
             </th:block>
         </ul>
     </div>
 </header>
 
 <header th:fragment="footer" class="footer">
-        <div>Factura Electronica</div>
+    <div>Factura Electronica</div>
 </header>

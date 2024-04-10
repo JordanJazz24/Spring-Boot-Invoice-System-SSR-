@@ -119,9 +119,10 @@ body {
     padding: 0;
 }
 .container {
-    display: flex;
     justify-content: space-between;
     padding: 20px;
+    display: inline-block;
+    background: #cccccc;
 }
 .courses-list,
 .enrollments-list,

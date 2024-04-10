@@ -14,13 +14,13 @@
 <header th:replace="~{fragments/header :: header} "></header>
 <div class="content_form">
 
-    <form class="form_login"  th:action="@{/presentation/login/login}"  th:object="${Usuario}" method="post">
-        <p>LOGIN</p>
+    <form class="form_login"  th:action="@{/presentation/proveedores/registrar}"  th:with="proveedor=${proveedor}, usuario=${usuario}" method="post">
+        <p>REGISTRO PROVEEDOR</p>
         <p><IMG src="/images/logo.png" class="logo" style="background: #356EA9"></p>
-        <input class="" type="text" th:field="*{identificacion}" name="identificacion"  placeholder="Identificación" required="required"/>
-        <input class="" type="password"   name="pass" placeholder="Contraseña" required="required"/>
-        <button class="" type="submit">Iniciar sesión</button>
-        <p>No tiene cuenta? <a th:href="@{/presentation/proveedores/registro/show}">Registrese aquí</a></p>
+        <input type="text" th:field="*{usuario.identificacion}" name="identificacion"  placeholder="Identificación" required="required"/>
+        <input type="text" th:field="*{proveedor.nombre}" name="nombre"  placeholder="nombre" required="required"/>
+        <input type="password" th:field="*{usuario.contrasena}"   name="contrasena" placeholder="Contrasena" required="required"/>
+        <button type="submit">Registrar</button>
 
     </form>
 </div>

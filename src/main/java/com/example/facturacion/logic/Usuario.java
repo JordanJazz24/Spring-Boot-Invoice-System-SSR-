@@ -20,6 +20,10 @@ public class Usuario {
     @Column(name = "rol")
     private String rol;
 
+    public Usuario() {
+        rol = "proveedor";
+    }
+
     public int getId() {
         return id;
     }

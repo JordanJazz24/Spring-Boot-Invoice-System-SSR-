@@ -32,7 +32,7 @@ public class Controller {
             httpSession.setAttribute("proveedor", proveedor);
             return switch (usuarioDB.getRol()) {
                 case "admin" -> "redirect:/presentation/proveedores/show";
-                case "proveedor" -> "redirect:/presentation/proveedor/View";
+                case "proveedor" -> "redirect:/presentation/clientes/show";
                 default -> "/";
             };
         } catch (Exception e) {
@@ -47,8 +47,10 @@ public class Controller {
     }
 
     @GetMapping("/presentation/login/Logout")
-    public String Logout(HttpSession httpSession){
+    public String Logout(HttpSession httpSession,Model model){
         httpSession.invalidate();
+        model.addAttribute("Usuario",new Usuario());
+
         return "redirect:/";
     }
 
