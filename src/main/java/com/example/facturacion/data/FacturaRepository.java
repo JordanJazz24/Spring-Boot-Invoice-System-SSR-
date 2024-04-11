@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface FacturaRepository extends CrudRepository<Factura, Integer>{
     @Query("SELECT c FROM Factura c WHERE c.proveedorByIdProveedor.id = ?1")
     Iterable<Factura> findByproveedorByIdProveedor(int id);
+
+
+
+
 }
