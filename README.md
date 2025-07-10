@@ -1,37 +1,108 @@
-En este proyecto se debe crear un sistema WEB en Java para la gestión de Facturas electrónicas, almacenando los datos en
-una base de datos MySql.
-El sistema permitirá tanto a personas físicas como jurídicas (empresas) registrarse como Proveedores de bienes o servicios
-y hacer facturación electrónica de las ventas que hacen a sus Clientes. Tanto las Proveedores como los Clientes deben estar
-previamente inscritos en los sistemas de Hacienda (revisar sección Notas).
-Funcionalidad
-El sistema debe incluir al menos las siguientes funcionalidades:
-1. Registro de Proveedor: Un proveedor podrá registrase en el sistema y utilizarlo.
-2. Configurar su perfil: Una vez que su registro haya sido aceptado, el proveedor podrá configurar sus datos,
-incluyendo los que corresponden a su perfil ante Hacienda.
-3. Registrar clientes: El proveedor podrá registrar sus clientes habituales
-4. Registrar productos: El proveedor podrá registrar sus productos o servicios
-5. Facturar: El proveedor podrá facturar sus ventas.
-6. Ver facturas: El proveedor podrá ver sus facturas, también incluye la representación de ellas en PDF y en XML
-7. Administrar: El administrador del sistema podrá aceptar solicitudes de registro de nuevos proveedores, listar los
-proveedores registrados y eventualmente desactivar a un proveedor.
-Notas
-• Debido a la naturaleza educativa de este proyecto, se excluye la funcionalidad correspondiente a la conexión con el
-sistema real del Ministerio de Hacienda de Costa Rica. Los estudiantes deben implementar alguna solución del lado
-del servidor que les permita validar los datos suministrados a la hora de registrarse en el sistema. Se sugiere la
-implementación de un STUB que consuma la fuente de datos de los usuarios registrados en el sistema de Hacienda.
-• Se excluye el registro real ante el sistema ATV (Administración Tributaria Virtual)
-• Se excluye el uso del Catálogo de bienes y servicios (Cabys).
-• El sistema deberá usar exclusivamente la técnica de renderizado del lado del servidor (Server Side Rendering) y por
-tanto NO SE PERMITE EL USO DE JAVASCRIPT.
-• El sistema deberá estar implementado usando el framework MVC Web de Spring y usando como motor de plantillas
-(template engine) Thymeleaf.
-• El sistema deberá implementar el control de acceso por medio de sesión en el servidor, usando usuario y clave, y
-solo habilitando las funcionalidades correspondientes al rol del usuario.
-• Todas las páginas del sistema deberán estar basadas en una plantilla que mantenga siempre disponible el menú con
-las opciones permitidas al usuario que ha ingresado y la identificación de éste.
-Reglas
-• El programa deberá seguir una arquitectura de tres capas (Presentación, Lógica y Datos), donde la capa de
-Presentación deberá ajustarse al patrón Modelo-Vista-Controlador (MVC Web de Spring y plantillas de Thymeleaf).
-• Si la propuesta de solución no cumple con los requerimientos no funcionales (implementación de 3 capas y MVC
-en capa de presentación; utilización de MySQL para persistencia de datos; no utilización de Java Script), el proyecto
-no será revisado.
+# FacturacionWEB
+
+**Autor:** [JordanJazz24](https://github.com/JordanJazz24)  
+**Repositorio:** [FacturacionWEB](https://github.com/JordanJazz24/FacturacionWEB)  
+**Lenguaje Principal:** Java  
+**Framework:** Spring Boot (MVC Web)  
+**Motor de Plantillas:** Thymeleaf  
+**Base de Datos:** MySQL  
+**Estado:** En desarrollo
+
+---
+
+## Descripción
+
+FacturacionWEB es un sistema web para la gestión completa de facturación electrónica, dirigido a proveedores de bienes y servicios y sus clientes. El sistema utiliza una arquitectura robusta de tres capas (Presentación, Lógica y Datos), sigue el patrón MVC de Spring Boot en la capa de presentación y emplea Thymeleaf como motor de plantillas para renderizado exclusivo del lado del servidor (SSR).
+
+---
+
+## Características principales
+
+- **Registro y gestión de proveedores:**  
+  Permite que personas físicas o jurídicas se registren como proveedores, gestionen su perfil y datos requeridos por el Ministerio de Hacienda de Costa Rica.
+- **Gestión de clientes:**  
+  Registro y administración de clientes habituales para cada proveedor.
+- **Gestión de productos/servicios:**  
+  Registro y administración de productos o servicios ofrecidos por cada proveedor.
+- **Facturación electrónica:**  
+  Creación y manejo de facturas electrónicas, visualización en PDF y XML.
+- **Control de acceso y roles:**  
+  Autenticación por sesión, habilitando funcionalidades según el rol del usuario (proveedor o administrador).
+- **Gestión administrativa:**  
+  Permite al administrador aceptar, listar y desactivar proveedores.
+- **Renderizado solo del lado del servidor:**  
+  No se utiliza JavaScript; toda la interacción y vistas se generan con Thymeleaf en el backend.
+- **Arquitectura en tres capas:**  
+  Separación clara entre Presentación (MVC/Thymeleaf), Lógica de Negocio (Servicios) y Datos (Repositorios/JPA).
+- **Cumplimiento de requisitos educativos:**  
+  No implementa integración real con el Ministerio de Hacienda, ATV o Catálogo CABYS, pero puede ser extendido para producción.
+
+---
+
+## Estructura del proyecto
+
+```
+FacturacionWEB/
+├── src/
+│   ├── main/java/com/example/facturacion/
+│   │   ├── data/        # Repositorios JPA (Usuarios, Proveedores, Clientes, Productos, Facturas, Detalles)
+│   │   ├── logic/       # Lógica de negocio (Service, entidades)
+│   │   └── ...          # Controladores y vistas (MVC)
+│   └── resources/
+│       └── templates/   # Vistas Thymeleaf
+└── README.md
+```
+
+---
+
+## Principales entidades y flujo
+
+- **Usuario:**  
+  Maneja autenticación y control de acceso.
+- **Proveedor:**  
+  Relacionado con usuario, gestiona clientes, productos y facturas.
+- **Cliente:**  
+  Asociado a un proveedor, destinatario de facturas.
+- **Producto:**  
+  Bien o servicio registrado por el proveedor.
+- **Factura y Detalle:**  
+  Representan la facturación electrónica y sus componentes.
+
+---
+
+## Instalación y ejecución
+
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/JordanJazz24/FacturacionWEB.git
+   cd FacturacionWEB
+   ```
+2. **Configura la base de datos MySQL** en `application.properties`.
+3. **Construye el proyecto:**
+   ```bash
+   ./mvnw clean install
+   ```
+4. **Ejecuta la aplicación:**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   Accede a la aplicación en `http://localhost:8080/`.
+
+---
+
+## Consideraciones y exclusiones
+
+- No se conecta al sistema real del Ministerio de Hacienda.
+- No implementa registro en ATV ni el uso del Catálogo CABYS.
+- Renderizado únicamente del lado del servidor (no se permite JavaScript).
+- Arquitectura de tres capas y patrón MVC obligatorio.
+
+---
+
+## Contacto
+
+Para sugerencias o soporte, contacta a [JordanJazz24](https://github.com/JordanJazz24).
+
+---
+
+**Este proyecto demuestra un enfoque robusto en arquitectura MVC, buenas prácticas en Java/Spring Boot y una base sólida para aplicaciones empresariales de facturación electrónica en Costa Rica.**
