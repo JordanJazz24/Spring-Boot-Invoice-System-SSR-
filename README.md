@@ -1,108 +1,112 @@
-# FacturacionWEB
 
-**Autor:** [JordanJazz24](https://github.com/JordanJazz24)  
-**Repositorio:** [FacturacionWEB](https://github.com/JordanJazz24/FacturacionWEB)  
-**Lenguaje Principal:** Java  
-**Framework:** Spring Boot (MVC Web)  
-**Motor de Plantillas:** Thymeleaf  
-**Base de Datos:** MySQL  
-**Estado:** En desarrollo
 
----
+# Spring-Boot-Invoice-System-SSR
 
-## Descripción
-
-FacturacionWEB es un sistema web para la gestión completa de facturación electrónica, dirigido a proveedores de bienes y servicios y sus clientes. El sistema utiliza una arquitectura robusta de tres capas (Presentación, Lógica y Datos), sigue el patrón MVC de Spring Boot en la capa de presentación y emplea Thymeleaf como motor de plantillas para renderizado exclusivo del lado del servidor (SSR).
+**Author:** [JordanJazz24](https://github.com/JordanJazz24)
+**Repository:** [FacturacionWEB](https://github.com/JordanJazz24/FacturacionWEB)
+**Main Language:** Java
+**Framework:** Spring Boot (Web MVC)
+**Template Engine:** Thymeleaf
+**Database:** MySQL
+**Status:** In development
 
 ---
 
-## Características principales
+## Description
 
-- **Registro y gestión de proveedores:**  
-  Permite que personas físicas o jurídicas se registren como proveedores, gestionen su perfil y datos requeridos por el Ministerio de Hacienda de Costa Rica.
-- **Gestión de clientes:**  
-  Registro y administración de clientes habituales para cada proveedor.
-- **Gestión de productos/servicios:**  
-  Registro y administración de productos o servicios ofrecidos por cada proveedor.
-- **Facturación electrónica:**  
-  Creación y manejo de facturas electrónicas, visualización en PDF y XML.
-- **Control de acceso y roles:**  
-  Autenticación por sesión, habilitando funcionalidades según el rol del usuario (proveedor o administrador).
-- **Gestión administrativa:**  
-  Permite al administrador aceptar, listar y desactivar proveedores.
-- **Renderizado solo del lado del servidor:**  
-  No se utiliza JavaScript; toda la interacción y vistas se generan con Thymeleaf en el backend.
-- **Arquitectura en tres capas:**  
-  Separación clara entre Presentación (MVC/Thymeleaf), Lógica de Negocio (Servicios) y Datos (Repositorios/JPA).
-- **Cumplimiento de requisitos educativos:**  
-  No implementa integración real con el Ministerio de Hacienda, ATV o Catálogo CABYS, pero puede ser extendido para producción.
+Spring-Boot-Invoice-System-SSR is a web-based system for comprehensive electronic invoicing management, aimed at suppliers of goods and services and their clients. The system is built using a robust three-layer architecture (Presentation, Logic, and Data), follows the Spring Boot MVC pattern in the presentation layer, and uses Thymeleaf as the template engine for strictly server-side rendering (SSR).
 
 ---
 
-## Estructura del proyecto
+## Key Features
+
+* **Supplier registration and management:**
+  Allows individuals or companies to register as suppliers, manage their profile, and provide data required by Costa Rica’s Ministry of Finance.
+* **Client management:**
+  Register and manage frequent clients for each supplier.
+* **Product/service management:**
+  Register and manage the products or services offered by each supplier.
+* **Electronic invoicing:**
+  Create and manage electronic invoices, with viewing options in PDF and XML formats.
+* **Access control and roles:**
+  Session-based authentication, enabling features based on user roles (supplier or admin).
+* **Administrative management:**
+  Allows the administrator to approve, list, and deactivate suppliers.
+* **Server-side rendering only:**
+  No JavaScript is used; all interactions and views are generated using Thymeleaf on the backend.
+* **Three-layer architecture:**
+  Clear separation between Presentation (MVC/Thymeleaf), Business Logic (Services), and Data (Repositories/JPA).
+* **Educational compliance:**
+  It does not implement real integration with the Ministry of Finance, ATV, or CABYS catalog, but it is extendable for production use.
+
+---
+
+## Project Structure
 
 ```
 FacturacionWEB/
 ├── src/
 │   ├── main/java/com/example/facturacion/
-│   │   ├── data/        # Repositorios JPA (Usuarios, Proveedores, Clientes, Productos, Facturas, Detalles)
-│   │   ├── logic/       # Lógica de negocio (Service, entidades)
-│   │   └── ...          # Controladores y vistas (MVC)
+│   │   ├── data/        # JPA Repositories (Users, Suppliers, Clients, Products, Invoices, Details)
+│   │   ├── logic/       # Business logic (Services, entities)
+│   │   └── ...          # Controllers and views (MVC)
 │   └── resources/
-│       └── templates/   # Vistas Thymeleaf
+│       └── templates/   # Thymeleaf views
 └── README.md
 ```
 
 ---
 
-## Principales entidades y flujo
+## Main Entities and Flow
 
-- **Usuario:**  
-  Maneja autenticación y control de acceso.
-- **Proveedor:**  
-  Relacionado con usuario, gestiona clientes, productos y facturas.
-- **Cliente:**  
-  Asociado a un proveedor, destinatario de facturas.
-- **Producto:**  
-  Bien o servicio registrado por el proveedor.
-- **Factura y Detalle:**  
-  Representan la facturación electrónica y sus componentes.
+* **User:**
+  Handles authentication and access control.
+* **Supplier:**
+  Linked to a user, manages clients, products, and invoices.
+* **Client:**
+  Associated with a supplier, receives invoices.
+* **Product:**
+  Goods or services registered by the supplier.
+* **Invoice and Detail:**
+  Represent electronic invoicing and its components.
 
 ---
 
-## Instalación y ejecución
+## Installation and Execution
 
-1. **Clona el repositorio:**
+1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/JordanJazz24/FacturacionWEB.git
    cd FacturacionWEB
    ```
-2. **Configura la base de datos MySQL** en `application.properties`.
-3. **Construye el proyecto:**
+2. **Configure the MySQL database** in `application.properties`.
+3. **Build the project:**
+
    ```bash
    ./mvnw clean install
    ```
-4. **Ejecuta la aplicación:**
+4. **Run the application:**
+
    ```bash
    ./mvnw spring-boot:run
    ```
-   Accede a la aplicación en `http://localhost:8080/`.
+
+   Access the app at `http://localhost:8080/`.
 
 ---
 
-## Consideraciones y exclusiones
+## Considerations and Exclusions
 
-- No se conecta al sistema real del Ministerio de Hacienda.
-- No implementa registro en ATV ni el uso del Catálogo CABYS.
-- Renderizado únicamente del lado del servidor (no se permite JavaScript).
-- Arquitectura de tres capas y patrón MVC obligatorio.
-
----
-
-## Contacto
-
-Para sugerencias o soporte, contacta a [JordanJazz24](https://github.com/JordanJazz24).
+* It does not connect to the actual Ministry of Finance system.
+* It does not implement ATV registration or use the CABYS catalog.
+* Server-side rendering only (JavaScript is not allowed).
+* Three-layer architecture and MVC pattern are mandatory.
 
 ---
 
-**Este proyecto demuestra un enfoque robusto en arquitectura MVC, buenas prácticas en Java/Spring Boot y una base sólida para aplicaciones empresariales de facturación electrónica en Costa Rica.**
+## Contact
+
+For suggestions or support, contact [JordanJazz24](https://github.com/JordanJazz24).
+
+
